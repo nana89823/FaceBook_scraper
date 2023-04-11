@@ -1,16 +1,10 @@
-"""
-This function is the core of this program.
-"""
-
 # 強制等待
 from time import sleep
-
 # 操作 browser 的 API
 from selenium.webdriver.chrome.service import Service
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-
 # 儲存資料
 import pandas as pd
 from bs4 import BeautifulSoup as bs
@@ -60,7 +54,7 @@ def extract(page, num_of_post, infinite_scroll, scrape_comment):
 
     links = get_href(driver)
 
-    with open("../../docs/facebook_credential.txt", encoding="utf-8") as file:
+    with open("../../docs/facebook_credentials.txt", encoding="utf-8") as file:
         email = file.readline().split('"')[1]
         password = file.readline().split('"')[1]
 
@@ -91,6 +85,7 @@ def extract(page, num_of_post, infinite_scroll, scrape_comment):
             # Save DataFrame header first
             posts_comment = pd.DataFrame(
                 columns=[
+                    "post_id",
                     "place_acquisition_date",
                     "name",
                     "time",
